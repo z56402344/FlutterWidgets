@@ -187,7 +187,7 @@ class _CollapsingState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter组件演示'),
+        title: Text('Flutter Widgets 集合'),
         actions: <Widget>[
           _buildAction(),
         ],
@@ -204,7 +204,7 @@ class _CollapsingState extends State<HomePage> {
             gridDelegate: new SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,
               mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
+              crossAxisSpacing: 20.0,
               childAspectRatio: 3.0,
             ),
             delegate: new SliverChildBuilderDelegate(
@@ -219,7 +219,7 @@ class _CollapsingState extends State<HomePage> {
             gridDelegate: new SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,
               mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
+              crossAxisSpacing: 20.0,
               childAspectRatio: 3.0,
             ),
             delegate: new SliverChildBuilderDelegate(
@@ -234,7 +234,7 @@ class _CollapsingState extends State<HomePage> {
             gridDelegate: new SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,
               mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
+              crossAxisSpacing: 20.0,
               childAspectRatio: 3.0,
             ),
             delegate: new SliverChildBuilderDelegate(
@@ -489,7 +489,7 @@ class _CollapsingState extends State<HomePage> {
                   padding: EdgeInsets.only(left: 10.0),
                   child: ClipRRect(
                     child: SizedBox(
-                        width: 20.0, height: 20.0, child: Icon(product.asset)),
+                        width: 30.0, height: 50.0, child: Icon(product.asset)),
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   ),
                 ),
