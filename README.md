@@ -54,10 +54,42 @@
 11. LayoutBuilder
 
 ###### Button类Widgets
+1. RaisedButton
+2. FloatingActionButton
+3. FlatButton
+4. IconButton
+5. PopupMenuButton
+6. ButtonBar
+ 
 ###### 输入框和选择框
+1. TextField
+2. Checkbox
+3. Radio
+4. Switch
+5. Slider
+6. Date & Time Pickers
+
 ###### Alert、Panel
+1. SimpleDialog
+2. AlertDialog
+3. BottomSheet
+4. ExpansionPanel
+5. SnackBar
+
 ###### 展示类Widgets
+1. Image
+2. Icon
+3. Chip
+4. Tooltip
+5. DataTable
+6. Card
+7. LinearProgressIndicator
+8. CircularProgressIndicatorWidget
+
 ###### 布局类Widgets
+1. ListTile
+2. Stepper
+3. Divider
 
 #### iOS风格的Widget
 1. CupertinoActivityIndicator
@@ -75,14 +107,11 @@
 13. CupertinoTabScaffold
 14. CupertinoTabView
 
-
-
 #### 进阶控件
 1. ListView
 2. GridView
 3. Swiper
 4. Sliver
-
 
 
 # ScreenShot
