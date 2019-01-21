@@ -2,9 +2,9 @@
 
 #Widgets 分类说明
 1. Flutter 基础类控件
-1). Text
-2). Button
-3). Image
+1. Text
+2. Button
+3. Image
 
 二.单元素容器
 
