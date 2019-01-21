@@ -1,7 +1,7 @@
 # Flutter Widgets
 
 #Widgets 分类说明
-一.Flutter 基础类控件
+一. Flutter 基础类控件
 
 1. Text
 2. Button
