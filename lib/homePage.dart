@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:myapp/bean/ItemBean.dart';
+import 'package:myapp/net/HttpItem.dart';
 import 'dart:math' as math;
 import 'package:myapp/util/screen.dart';
+import 'package:myapp/widget/basewidget/httpdemo/index.dart';
 
 import 'package:myapp/widget/basewidget/image/index.dart';
 import 'package:myapp/widget/basewidget/text/index.dart';
@@ -52,7 +54,6 @@ import 'package:myapp/widget/advancedWidget/slivers/index.dart';
 import 'package:myapp/widget/advancedWidget/swiper/index.dart';
 import 'package:myapp/widget/advancedWidget/GridView/index.dart';
 
-
 final int TYPE_SINGLE_CONTAINER = 1;
 final int TYPE_MULTIPLE_CONTAINER = 2;
 final int TYPE_MATERIAL_CONTAINER = 3;
@@ -68,7 +69,15 @@ final List<String> titleAssets = [
   'images/food06.jpeg',
 ];
 
-var headNames = ["基础控件", "单元素容器", "多元素容器", "Material Widgets", "iOS风格控件",  "进阶控件","Animation"];
+var headNames = [
+  "基础控件",
+  "单元素容器",
+  "多元素容器",
+  "Material Widgets",
+  "iOS风格控件",
+  "进阶控件",
+  "Animation"
+];
 
 //基础控件
 final List<ItemBean> _baseItem = [
@@ -76,6 +85,7 @@ final List<ItemBean> _baseItem = [
   ItemBean(name: 'Button', asset: Icons.crop_7_5),
   ItemBean(name: 'Image', asset: Icons.image),
   ItemBean(name: '屏幕参数', asset: Icons.tablet),
+  ItemBean(name: 'http请求', asset: Icons.tablet),
 ];
 
 //单控件容器
@@ -208,8 +218,8 @@ class _CollapsingState extends State<HomePage> {
               childAspectRatio: 3.0,
             ),
             delegate: new SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                return _buildItemGrid2(TYPE_SINGLE_CONTAINER,index);
+              (BuildContext context, int index) {
+                return _buildItemGrid2(TYPE_SINGLE_CONTAINER, index);
               },
               childCount: _singleItem.length,
             ),
@@ -223,8 +233,8 @@ class _CollapsingState extends State<HomePage> {
               childAspectRatio: 3.0,
             ),
             delegate: new SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                return _buildItemGrid2(TYPE_MULTIPLE_CONTAINER,index);
+              (BuildContext context, int index) {
+                return _buildItemGrid2(TYPE_MULTIPLE_CONTAINER, index);
               },
               childCount: _multipleItem.length,
             ),
@@ -238,8 +248,8 @@ class _CollapsingState extends State<HomePage> {
               childAspectRatio: 3.0,
             ),
             delegate: new SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                return _buildItemGrid2(TYPE_MATERIAL_CONTAINER,index);
+              (BuildContext context, int index) {
+                return _buildItemGrid2(TYPE_MATERIAL_CONTAINER, index);
               },
               childCount: _materialItem.length,
             ),
@@ -248,17 +258,16 @@ class _CollapsingState extends State<HomePage> {
           SliverFixedExtentList(
             itemExtent: 75.0,
             delegate: SliverChildListDelegate(
-              _buildAdvancedList(TYPE_iOS_CONTAINER,_iOSlItem.length),
+              _buildAdvancedList(TYPE_iOS_CONTAINER, _iOSlItem.length),
             ),
           ),
           _buildHeader(5),
           SliverFixedExtentList(
             itemExtent: 75.0,
             delegate: SliverChildListDelegate(
-              _buildAdvancedList(TYPE_ADVICE_CONTAINER,_advancedItem.length),
+              _buildAdvancedList(TYPE_ADVICE_CONTAINER, _advancedItem.length),
             ),
           ),
-
         ],
       ),
     );
@@ -267,23 +276,23 @@ class _CollapsingState extends State<HomePage> {
   Widget _buildAction() {
     return PopupMenuButton(
       itemBuilder: (context) => [
-        const PopupMenuItem<int>(
-          value: 0,
-          child: Text('reset'),
-        ),
-        const PopupMenuItem<int>(
-          value: 1,
-          child: Text("Head不滞留顶部"),
-        ),
-        const PopupMenuItem<int>(
-          value: 2,
-          child: Text('下拉时第一个Head优先展示'),
-        ),
-        const PopupMenuItem<int>(
-          value: 3,
-          child: Text('Head滞留顶部'),
-        ),
-      ],
+            const PopupMenuItem<int>(
+              value: 0,
+              child: Text('reset'),
+            ),
+            const PopupMenuItem<int>(
+              value: 1,
+              child: Text("Head不滞留顶部"),
+            ),
+            const PopupMenuItem<int>(
+              value: 2,
+              child: Text('下拉时第一个Head优先展示'),
+            ),
+            const PopupMenuItem<int>(
+              value: 3,
+              child: Text('Head滞留顶部'),
+            ),
+          ],
       onSelected: (value) {
         switch (value) {
           case 1:
@@ -400,24 +409,24 @@ class _CollapsingState extends State<HomePage> {
     );
   }
 
-  List<Widget> _buildAdvancedList(int type,int count) {
+  List<Widget> _buildAdvancedList(int type, int count) {
     return new List.generate(
-        count, (int index) => _buildAdvancedItemList(type,index));
+        count, (int index) => _buildAdvancedItemList(type, index));
   }
 
-  Widget _buildAdvancedItemList(int type,int index) {
+  Widget _buildAdvancedItemList(int type, int index) {
     ItemBean product = new ItemBean();
-    if(type == TYPE_ADVICE_CONTAINER){
+    if (type == TYPE_ADVICE_CONTAINER) {
       product = _advancedItem[index];
-    }else{
+    } else {
       product = _iOSlItem[index];
     }
     return GestureDetector(
       onTap: () {
         print("点击$index");
-        if(type == TYPE_ADVICE_CONTAINER){
+        if (type == TYPE_ADVICE_CONTAINER) {
           gotoAdvancedPage(index);
-        }else{
+        } else {
           gotoiOSPage(index);
         }
       },
@@ -459,21 +468,21 @@ class _CollapsingState extends State<HomePage> {
 
   Widget _buildItemGrid2(int type, int index) {
     ItemBean product = new ItemBean();
-    if(TYPE_SINGLE_CONTAINER == type){
-      product =_singleItem[index];
-    }else if(TYPE_MULTIPLE_CONTAINER == type){
+    if (TYPE_SINGLE_CONTAINER == type) {
+      product = _singleItem[index];
+    } else if (TYPE_MULTIPLE_CONTAINER == type) {
       product = _multipleItem[index];
-    }else if(TYPE_MATERIAL_CONTAINER == type){
+    } else if (TYPE_MATERIAL_CONTAINER == type) {
       product = _materialItem[index];
     }
     return new GestureDetector(
-      onTap: (){
+      onTap: () {
         print("点击$index");
-        if(TYPE_SINGLE_CONTAINER == type){
+        if (TYPE_SINGLE_CONTAINER == type) {
           gotoSingleContainerPage(index);
-        }else if(TYPE_MULTIPLE_CONTAINER == type){
+        } else if (TYPE_MULTIPLE_CONTAINER == type) {
           gotoMultiplePage(index);
-        }else if(TYPE_MATERIAL_CONTAINER == type){
+        } else if (TYPE_MATERIAL_CONTAINER == type) {
           gotoMaterialPage(index);
         }
       },
@@ -508,7 +517,6 @@ class _CollapsingState extends State<HomePage> {
         ),
       ),
     );
-
   }
 
   //基础控件跳转逻辑
@@ -525,6 +533,9 @@ class _CollapsingState extends State<HomePage> {
         break;
       case 3:
         push(new ScreenParameter());
+        break;
+      case 4:
+        push(new httpWidget());
         break;
     }
   }
