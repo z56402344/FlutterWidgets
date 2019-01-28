@@ -5,6 +5,7 @@ import 'package:myapp/bean/ItemBean.dart';
 import 'package:myapp/net/HttpItem.dart';
 import 'dart:math' as math;
 import 'package:myapp/util/screen.dart';
+import 'package:myapp/widget/basewidget/GestureDetector/index.dart';
 import 'package:myapp/widget/basewidget/httpdemo/index.dart';
 
 import 'package:myapp/widget/basewidget/image/index.dart';
@@ -86,6 +87,7 @@ final List<ItemBean> _baseItem = [
   ItemBean(name: 'Image', asset: Icons.image),
   ItemBean(name: '屏幕参数', asset: Icons.tablet),
   ItemBean(name: 'http请求', asset: Icons.tablet),
+  ItemBean(name: '触摸事件', asset: Icons.tablet),
 ];
 
 //单控件容器
@@ -536,6 +538,9 @@ class _CollapsingState extends State<HomePage> {
         break;
       case 4:
         push(new httpWidget());
+        break;
+      case 5:
+        push(new TGestureDetectorWidget());
         break;
     }
   }
